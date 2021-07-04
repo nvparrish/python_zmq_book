@@ -5,6 +5,7 @@
 #
 
 import zmq
+import messages
 
 context = zmq.Context()
 
@@ -16,15 +17,8 @@ socket.connect("tcp://localhost:5555")
 
 # Do 10 requests, waiting each time for a response
 for request in range(10):
-    print(f"Sending rquest {request} ...")
+    print(f"Sending request {request} ...")
     socket.send(b"Hello")
-
-    
-    option = True
-    while option:
-        # Get the reply.
-        message = socket.recv()
-        print(f"Received reply {request} [ {message} ]")
-        option = socket.getsockopt(zmq.RCVMORE)
-
-
+    msgs = messages.s_recv_strings(socket)
+    for message in msgs:
+        print(f"{message}")
