@@ -4,6 +4,12 @@
 
 import zmq
 
+def s_print_version():
+    """
+    This function prints the version of zmq being used
+    :return: None
+    """
+    print(zmq.zmq_version())
 
 def s_send_string(socket: zmq.Socket, message: bytes):
     """

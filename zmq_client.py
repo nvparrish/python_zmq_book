@@ -10,6 +10,7 @@ import messages
 context = zmq.Context()
 
 # Socket to talk to server
+messages.s_print_version()
 
 print("Connecting to hello world server...")
 socket = context.socket(zmq.REQ)
